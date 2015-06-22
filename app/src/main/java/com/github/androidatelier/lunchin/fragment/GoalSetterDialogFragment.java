@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.github.androidatelier.lunchin.R;
 import com.github.androidatelier.lunchin.util.Constants;
 
+import java.text.NumberFormat;
+
 public class GoalSetterDialogFragment extends DialogFragment {
     public static GoalSetterDialogFragment newInstance(String goalName, float goalCost) {
         GoalSetterDialogFragment fragment = new GoalSetterDialogFragment();
@@ -37,7 +39,8 @@ public class GoalSetterDialogFragment extends DialogFragment {
         nameView.setText(goalName);
         final TextView costView = (TextView) view.findViewById(R.id.dialog_goal_cost);
         float goalCost = getArguments().getFloat(Constants.KEY_GOAL_COST);
-        costView.setText(String.valueOf(goalCost));
+
+        costView.setText(NumberFormat.getCurrencyInstance().format(goalCost));
         builder.setView(view);
 
         builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {

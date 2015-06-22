@@ -16,6 +16,10 @@ import android.widget.EditText;
 import com.github.androidatelier.lunchin.R;
 import com.github.androidatelier.lunchin.util.Constants;
 
+import java.text.NumberFormat;
+
+//This fragment sets both the average lunch cost and the salary
+
 public class EditTextDialogFragment extends DialogFragment {
     public static EditTextDialogFragment newInstance(CharSequence title, String text) {
         EditTextDialogFragment fragment = new EditTextDialogFragment();
@@ -40,7 +44,8 @@ public class EditTextDialogFragment extends DialogFragment {
 
         final EditText editText = (EditText) textInputLayout.findViewById(R.id.edit_text);
         String text = getArguments().getString(Constants.KEY_TEXT);
-        editText.setText(text);
+
+        editText.setText(NumberFormat.getCurrencyInstance().format(Float.parseFloat(text)));
 
         builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
             @Override
